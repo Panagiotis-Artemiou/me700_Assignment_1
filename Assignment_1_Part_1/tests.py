@@ -1,5 +1,6 @@
 import numpy as np
 import pytest
+from newtons_method_functions import newtons_method
 
 def test_newtons_method_multidimensional_convergence():
     # Test for a system of nonlinear equations
