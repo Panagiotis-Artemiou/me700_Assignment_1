@@ -1,5 +1,5 @@
 import numpy as np
-from newton_method_main import newton_solver
+from newton_method_functions import newton_solver
 
 # Define the system of nonlinear equations
 def f(x):
