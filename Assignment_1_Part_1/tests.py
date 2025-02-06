@@ -1,7 +1,7 @@
 import pytest
 import numpy as np
 from numpy.testing import assert_array_equal
-import newton_method_main as nmm
+import newton_method_functions as nmm
 
 # --- Test Function Evaluations ---
 def test_evaluate_function():
