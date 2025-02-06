@@ -1,7 +1,7 @@
 import pytest
 import numpy as np
 from numpy.testing import assert_array_equal
-import newton_method_functions as nmm
+import newton_method_functions as nmf
 
 # --- Test Function Evaluations ---
 def test_evaluate_function():
@@ -10,7 +10,7 @@ def test_evaluate_function():
         return x**2 - 4
 
     x = np.array([2.0])
-    result = nmm.evaluate_function(f, x)
+    result = nmf.evaluate_function(f, x)
     expected = np.array([0.0])
     
     assert_array_equal(result, expected)
@@ -21,7 +21,7 @@ def test_evaluate_jacobian():
         return 2*x
 
     x = np.array([2.0])
-    result = nmm.evaluate_jacobian(J, x)
+    result = nmf.evaluate_jacobian(J, x)
     expected = np.array([4.0])
     
     assert_array_equal(result, expected)
@@ -34,7 +34,7 @@ def test_converged_success():
     tol = 1e-3
     
     # Should return True, as  Fx and delta_x is below the tolerance
-    assert nmm.converged(Fx, delta_x, tol)
+    assert nmf.converged(Fx, delta_x, tol)
 
 
 def test_converged_stagnation():
@@ -44,7 +44,7 @@ def test_converged_stagnation():
     
     # Should raise an error, since Fx > tol but delta_x is small
     with pytest.raises(ValueError, match="Newton's method has stagnated: The change in solution is small, but the function value is still large. This may indicate a near-singular region or a local minimum."):
-        nmm.converged(Fx, delta_x, tol)
+        nmf.converged(Fx, delta_x, tol)
 
 
 def test_converged_fluctuation():
@@ -54,7 +54,7 @@ def test_converged_fluctuation():
     
     # Should raise an error, since delta_x > tol but Fx is small
     with pytest.raises(ValueError, match="Newton's method is fluctuating: The function has converged to a small value, but the solution is still fluctuating and not stabilizing."):
-        nmm.converged(Fx, delta_x, tol)
+        nmf.converged(Fx, delta_x, tol)
 
 
 # --- Test Solve Linear System ---
@@ -63,7 +63,7 @@ def test_solve_linear_system():
     Jx = np.array([[2.0, 0], [0, 2.0]])  # 2x2 Jacobian
     Fx = np.array([4.0, 6.0])
     
-    delta_x = nmm.solve_linear_system(Jx, Fx)
+    delta_x = nmf.solve_linear_system(Jx, Fx)
     expected_delta_x = np.array([-2.0, -3.0])
     
     assert_array_equal(delta_x, expected_delta_x)
@@ -74,7 +74,7 @@ def test_solve_linear_system_singular():
     Fx = np.array([2.0, 2.0])
     
     with pytest.raises(ValueError, match="Jacobian is singular or near singular: Newton's method failed."):
-        nmm.solve_linear_system(Jx, Fx)
+        nmf.solve_linear_system(Jx, Fx)
 
 
 # --- Test Update Solution ---
@@ -82,7 +82,7 @@ def test_update_solution():
     x = np.array([1.0, 2.0])
     delta_x = np.array([-0.5, 0.5])
     
-    updated_x = nmm.update_solution(x, delta_x)
+    updated_x = nmf.update_solution(x, delta_x)
     expected = np.array([0.5, 2.5])
     
     assert_array_equal(updated_x, expected)
@@ -99,7 +99,7 @@ def test_newton_solver_convergence():
     x0 = np.array([3.0])
     tol = 1e-6
     
-    result = nmm.newton_solver(f, J, x0, tol)
+    result = nmf.newton_solver(f, J, x0, tol)
     expected = np.array([2.0])
     
     assert np.linalg.norm(result - expected) < tol
@@ -116,7 +116,7 @@ def test_newton_solver_stagnation():
     tol = 1e-6
     
     with pytest.raises(ValueError, match="Newton's method has stagnated: The change in solution is small, but the function value is still large. This may indicate a near-singular region or a local minimum."):
-        nmm.newton_solver(f, J, x0, tol)
+        nmf.newton_solver(f, J, x0, tol)
 
 '''
 Can'f find a case where the solution is fluctuating :'(
@@ -131,7 +131,7 @@ def test_newton_solver_fluctuation():
     tol = 1e-6
     
     with pytest.raises(ValueError, match="Newton's method is fluctuating: The function has converged to a small value, but the solution is still fluctuating and not stabilizing."):
-        nmm.newton_solver(f, J, x0, tol)
+        nmf.newton_solver(f, J, x0, tol)
 '''
 
 def test_newton_solver_max_iterations():
@@ -145,4 +145,4 @@ def test_newton_solver_max_iterations():
     tol = 1e-6
     
     with pytest.raises(ValueError, match="Newton's method did not converge within the maximum number of iterations."):
-        nmm.newton_solver(f, J, x0, tol, max_iter=1)
+        nmf.newton_solver(f, J, x0, tol, max_iter=1)
