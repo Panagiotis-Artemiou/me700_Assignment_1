@@ -86,3 +86,21 @@ print("Solution:", solution)
 
 
 # TUTORIAL 5
+
+
+
+########## check why it doesnt work in this case
+
+
+
+
+def f(x):
+   return np.array([141*10**5*x[0] - 47*10**5*x[1], -47*10**5*x[0] + 47*10**5*x[1] + 1000])
+
+def J(x):
+    return np.array([[-47*10**5, 141*10**5], [47*10**5, -47*10**5]])
+
+x0 = np.array([-0.0001, -0.0001])
+
+solution = newton_solver(f, J, x0)
+print("Solution:", solution)
