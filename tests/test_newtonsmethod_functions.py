@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-import newtonsmethod
+import src.newtonsmethod.newtonsmethod_functions as nmf
 from numpy.testing import assert_array_equal
 from src.newtonsmethod import newtonsmethod_functions as nmf #from src/newtonsmethod_functions import ...???
 
