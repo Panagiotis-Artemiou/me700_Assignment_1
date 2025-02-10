@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+src/newtonsmethod/newtonsmethod_functions.py
+src/newtonsnmethod.egg-info/PKG-INFO
+src/newtonsnmethod.egg-info/SOURCES.txt
+src/newtonsnmethod.egg-info/dependency_links.txt
+src/newtonsnmethod.egg-info/requires.txt
+src/newtonsnmethod.egg-info/top_level.txt
+tests/test_newtonsmethod_functions.py
