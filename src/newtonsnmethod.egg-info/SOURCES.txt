@@ -1,5 +1,6 @@
 README.md
 pyproject.toml
+src/__init__.py
 src/newtonsmethod/newtonsmethod_functions.py
 src/newtonsnmethod.egg-info/PKG-INFO
 src/newtonsnmethod.egg-info/SOURCES.txt
