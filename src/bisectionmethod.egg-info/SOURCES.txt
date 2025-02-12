@@ -1,9 +1,0 @@
-README.md
-pyproject.toml
-src/bisectionmethod.egg-info/PKG-INFO
-src/bisectionmethod.egg-info/SOURCES.txt
-src/bisectionmethod.egg-info/dependency_links.txt
-src/bisectionmethod.egg-info/requires.txt
-src/bisectionmethod.egg-info/top_level.txt
-src/newtonsmethod/newtonsmethod_functions.py
-tests/test_newtonsmethod_functions.py
