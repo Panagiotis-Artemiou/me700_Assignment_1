@@ -44,6 +44,9 @@ jobs:
     - name: Test with pytest
       run: |
         pytest -v
+    - name: Put src to path
+      run: | PYTHONPATH=$PYTHONPATH:/projectnb/me700/students/artemiou/me700_assignment_1/src
+
     - name: Generate coverage report
       run: |
         pytest --cov=setupexample --cov-report=xml
